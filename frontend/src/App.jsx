@@ -160,7 +160,7 @@ export default function App() {
       setCountdown(60)
       intervalRef.current = setInterval(async () => {
         try {
-          const res = await fetch("http://localhost:8000/partidos")
+          const res = await fetch("https://mundial-asistente.onrender.com/partidos")
           const data = await res.json()
           const nuevos = data.partidos || []
           setPartidos(nuevos)
@@ -193,7 +193,7 @@ export default function App() {
   async function cargarPartidos() {
     setCargandoPartidos(true)
     try {
-      const res = await fetch("http://localhost:8000/partidos")
+      const res = await fetch("https://mundial-asistente.onrender.com/partidos")
       const data = await res.json()
       setPartidos(data.partidos || [])
     } catch {}
@@ -221,7 +221,7 @@ export default function App() {
     setCargando(true)
     setHistorial([...nuevoHistorial, { role: "assistant", content: "" }])
     try {
-      const res = await fetch("http://localhost:8000/analizar", {
+      const res = await fetch("https://mundial-asistente.onrender.com/analizar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ historial: nuevoHistorial, partido: partidoConStats })
